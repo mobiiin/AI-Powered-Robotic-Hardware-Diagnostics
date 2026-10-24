@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0d12" />
+  <meta name="description" content="AI-assisted diagnostics and automated testing for robotic hardware." />
+  <title>Aegis · Robotics Diagnostics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="Aegis home"><span class="brand-mark">A</span><span>AEGIS<span class="brand-sub">ROBOTICS / LAB</span></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#overview"><span class="nav-icon">◫</span>Overview</a>
+        <a class="nav-item" href="#devices"><span class="nav-icon">⌘</span>Devices <span class="nav-count">03</span></a>
+        <a class="nav-item" href="#test-runs"><span class="nav-icon">◉</span>Test runs</a>
+        <a class="nav-item" href="#diagnostics"><span class="nav-icon">⌁</span>Diagnostics <span class="nav-dot"></span></a>
+        <a class="nav-item" href="#logs"><span class="nav-icon">≡</span>Event logs</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection-card"><span class="pulse"></span><div><strong>SIMULATOR ONLINE</strong><small>All systems nominal</small></div><span class="tiny-chevron">⌄</span></div>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span>Settings</a>
+        <div class="user-row"><div class="avatar">ML</div><div class="user-meta"><strong>Mission Control</strong><small>Operator workspace</small></div><span class="more">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><b>/</b><strong>Overview</strong></div><div class="top-actions"><div class="live-indicator"><i></i>LIVE TELEMETRY</div><button class="icon-button" aria-label="Notifications">♧<span class="notification-dot"></span></button><div class="top-avatar">ML</div></div></header>
+      <div class="page-wrap">
+        <section class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>FLIGHT SYSTEMS / DIAGNOSTICS</div><h1>System overview<span class="heading-period">.</span></h1><p class="subheading">Monitor fleet health, run automated checks, and investigate anomalies.</p></div><div class="heading-actions"><button class="secondary-button" id="export-btn"><span>↓</span> Export report</button><button class="primary-button" id="run-btn"><span class="button-play">▶</span> Run diagnostics</button></div></section>
+
+        <section class="stat-grid" aria-label="Fleet summary">
+          <article class="stat-card"><div class="stat-top"><span>FLEET STATUS</span><span class="stat-icon green">⌘</span></div><div class="stat-main"><strong>2<span class="stat-divider">/</span>3</strong><span class="stat-label">devices healthy</span></div><div class="stat-foot"><span class="status-pill ok"><i></i> 2 online</span><span class="stat-muted">· 1 needs attention</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>TESTS TODAY</span><span class="stat-icon blue">◉</span></div><div class="stat-main"><strong id="test-count">24</strong><span class="stat-label">automated checks</span></div><div class="stat-foot"><span class="trend-up">↗ 12%</span><span class="stat-muted"> vs. previous 24h</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>PASS RATE</span><span class="stat-icon orange">⌁</span></div><div class="stat-main"><strong>96.8<span class="percent">%</span></strong><span class="stat-label">last 7 days</span></div><div class="stat-foot"><div class="mini-progress"><span></span></div><span class="stat-muted">target 95%</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>OPEN ALERTS</span><span class="stat-icon red">!</span></div><div class="stat-main"><strong id="alert-count">01</strong><span class="stat-label">requires review</span></div><div class="stat-foot"><span class="status-pill warning"><i></i> Battery voltage</span></div></article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel telemetry-panel"><div class="panel-heading"><div><div class="panel-kicker">FLEET TELEMETRY</div><h2>Health over time</h2></div><div class="chart-controls"><button class="range-button active">24H</button><button class="range-button">7D</button><button class="range-button">30D</button><span class="chart-menu">···</span></div></div><div class="chart-legend"><span><i class="legend-dot cyan"></i>Battery</span><span><i class="legend-dot violet"></i>IMU</span><span class="chart-unit">NORMALIZED HEALTH SCORE</span></div><div class="chart-wrap"><div class="chart-y-labels"><span>100</span><span>75</span><span>50</span><span>25</span></div><div class="chart-area"><div class="chart-gridlines"><i></i><i></i><i></i><i></i><i></i></div><svg class="chart-svg" viewBox="0 0 760 190" preserveAspectRatio="none" role="img" aria-label="Battery and IMU health line chart"><defs><linearGradient id="area-cyan" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4dd7c0" stop-opacity=".17"/><stop offset="1" stop-color="#4dd7c0" stop-opacity="0"/></linearGradient></defs><path class="area-fill" d="M0 56 C40 53 40 62 83 60 S130 48 166 52 S214 62 250 55 S296 48 332 53 S374 60 416 51 S461 42 500 48 S548 55 583 45 S626 39 667 43 S718 32 760 36 L760 190 L0 190Z"/><path class="line-cyan" d="M0 56 C40 53 40 62 83 60 S130 48 166 52 S214 62 250 55 S296 48 332 53 S374 60 416 51 S461 42 500 48 S548 55 583 45 S626 39 667 43 S718 32 760 36"/><path class="line-violet" d="M0 97 C38 92 48 102 83 96 S131 88 166 92 S213 98 250 91 S297 83 332 87 S379 99 416 91 S461 79 500 84 S548 91 583 82 S628 72 667 77 S716 66 760 70"/><circle cx="500" cy="48" r="4" class="point-cyan"/><circle cx="500" cy="84" r="4" class="point-violet"/></svg><div class="chart-tooltip"><span>14:00 UTC</span><strong>Battery <b>94%</b></strong><strong>IMU <b>82%</b></strong></div><div class="chart-x-labels"><span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00</span><span>NOW</span></div></div></div></article>
+          <article class="panel distribution-panel"><div class="panel-heading"><div><div class="panel-kicker">TEST COVERAGE</div><h2>Checks by category</h2></div><button class="chart-menu" aria-label="More options">···</button></div><div class="donut-wrap"><div class="donut"><div class="donut-center"><strong>24</strong><span>TESTS</span></div></div></div><div class="distribution-list"><div><span><i class="legend-dot cyan"></i>Calibration</span><strong>09 <small>· 100%</small></strong></div><div><span><i class="legend-dot blue"></i>Power system</span><strong>06 <small>· 83%</small></strong></div><div><span><i class="legend-dot violet"></i>Motion &amp; IMU</span><strong>05 <small>· 100%</small></strong></div><div><span><i class="legend-dot orange"></i>Navigation</span><strong>04 <small>· 75%</small></strong></div></div></article>
+        </section>
+
+        <section class="content-grid lower-grid">
+          <article class="panel devices-panel" id="devices"><div class="panel-heading"><div><div class="panel-kicker">CONNECTED HARDWARE <span class="count-badge">03</span></div><h2>Device fleet</h2></div><button class="text-button">View all <span>↗</span></button></div><div class="table-wrap"><table><thead><tr><th>DEVICE</th><th>STATUS</th><th>FIRMWARE</th><th>LAST TEST</th><th></th></tr></thead><tbody id="device-rows"><tr><td><div class="device-cell"><span class="device-icon drone">✣</span><span><strong>UAV-01</strong><small>Surveyor · Quadrotor</small></span></div></td><td><span class="status-text healthy"><i></i> Healthy</span></td><td class="mono">v2.8.1</td><td class="muted-cell">2 min ago</td><td class="row-more">···</td></tr><tr><td><div class="device-cell"><span class="device-icon rover">▰</span><span><strong>ROVER-03</strong><small>Atlas · Ground rover</small></span></div></td><td><span class="status-text healthy"><i></i> Healthy</span></td><td class="mono">v1.6.4</td><td class="muted-cell">18 min ago</td><td class="row-more">···</td></tr><tr class="attention-row"><td><div class="device-cell"><span class="device-icon drone muted-device">✣</span><span><strong>UAV-04</strong><small>Scout · Quadrotor</small></span></div></td><td><span class="status-text attention"><i></i> Attention</span></td><td class="mono">v2.7.9</td><td class="muted-cell">1 hr ago</td><td class="row-more">···</td></tr></tbody></table></div></article>
+          <article class="panel triage-panel" id="diagnostics"><div class="panel-heading"><div><div class="panel-kicker">AI TRIAGE <span class="ai-badge">✦ ASSIST</span></div><h2>Needs attention</h2></div><span class="severity-tag"><i></i> REVIEW</span></div><div class="triage-device"><span class="device-icon drone muted-device">✣</span><div><strong>UAV-04 · Scout</strong><small>Diagnostic run · 09:42:18 UTC</small></div><span class="triage-time">12m</span></div><div class="triage-summary"><div class="summary-icon">⌁</div><p id="triage-summary">Battery voltage is below the configured service threshold. Verify the pack before the next mission.</p></div><div class="evidence-label">EVIDENCE</div><div class="evidence-row"><span>Battery voltage</span><strong class="evidence-bad">20.6 V <small>↓</small></strong><span class="limit-text">min. 22.0 V</span></div><div class="evidence-row"><span>Cell delta</span><strong>0.04 V</strong><span class="limit-text">max. 0.10 V</span></div><button class="triage-link" id="triage-detail">View recommended checks <span>→</span></button></article>
+        </section>
+
+        <section class="panel runs-panel" id="test-runs"><div class="panel-heading"><div><div class="panel-kicker">RECENT ACTIVITY</div><h2>Latest test runs</h2></div><button class="text-button">All test runs <span>↗</span></button></div><div class="runs-list" id="runs-list"><div class="run-row"><span class="run-result passed">✓</span><div class="run-name"><strong>Full system check</strong><small>UAV-01 · Surveyor</small></div><div class="run-tests"><strong>12 / 12</strong><small>checks passed</small></div><div class="run-duration">00:14</div><div class="run-time">2 min ago</div><span class="row-more">···</span></div><div class="run-row"><span class="run-result passed">✓</span><div class="run-name"><strong>Calibration sequence</strong><small>ROVER-03 · Atlas</small></div><div class="run-tests"><strong>08 / 08</strong><small>checks passed</small></div><div class="run-duration">00:32</div><div class="run-time">18 min ago</div><span class="row-more">···</span></div><div class="run-row failed-run"><span class="run-result warning-result">!</span><div class="run-name"><strong>Pre-flight inspection</strong><small>UAV-04 · Scout</small></div><div class="run-tests"><strong>09 / 10</strong><small>checks passed</small></div><div class="run-duration">00:21</div><div class="run-time">1 hr ago</div><span class="row-more">···</span></div></div></section>
+        <footer class="footer"><span><i class="footer-pulse"></i>SIMULATOR MODE <span class="footer-sep">·</span> Data is generated for demonstration</span><span>AEGIS DIAGNOSTICS <b>v1.0.0</b></span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="result-dialog" class="result-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="dialog-kicker">AUTOMATED DIAGNOSTICS</div><div class="dialog-title-row"><h2>Run complete</h2><span class="dialog-status" id="dialog-status">PASS</span></div><p id="dialog-summary">All simulated checks passed.</p><div id="dialog-findings" class="dialog-findings"></div><div class="operator-note">✦ <span>AI triage is advisory. Review evidence and follow your maintenance procedures before returning hardware to service.</span></div><form method="dialog"><button class="primary-button dialog-done">Done</button></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
