@@ -59,6 +59,7 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <dialog id="result-dialog" class="result-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="dialog-kicker">AUTOMATED DIAGNOSTICS</div><div class="dialog-title-row"><h2>Run complete</h2><span class="dialog-status" id="dialog-status">PASS</span></div><p id="dialog-summary">All simulated checks passed.</p><div id="dialog-findings" class="dialog-findings"></div><div class="operator-note">✦ <span>AI triage is advisory. Review evidence and follow your maintenance procedures before returning hardware to service.</span></div><form method="dialog"><button class="primary-button dialog-done">Done</button></form></dialog>
-  <script src="app.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

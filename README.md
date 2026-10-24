@@ -1,6 +1,6 @@
 # Aegis Robotics Diagnostics
 
-An AI-assisted hardware diagnostics and automated testing platform for robots and UAVs. This repository contains a responsive operator dashboard, a Python diagnostic API, and a deterministic simulator so the workflow can be explored without connecting physical hardware.
+An AI-assisted hardware diagnostics and automated testing platform for robots and UAVs. This repository contains a responsive React dashboard, a Python diagnostic API, and a deterministic simulator so the workflow can be explored without connecting physical hardware.
 
 ## System layout
 
@@ -13,12 +13,20 @@ Python Diagnostic Service ── telemetry, calibration and test results
         ├── Rule-based triage (safe default, no API key required)
         └── Optional LLM provider (server-side only)
         ▼
-React-ready operator dashboard (static HTML/CSS/JS demo)
+React operator dashboard (Vite)
 ```
 
 ## Run locally
 
-The dashboard runs as static files: open `dashboard/index.html` or serve the `dashboard` directory with any static web server. The simulator is built in, so no device or credentials are required.
+Run the React dashboard:
+
+```bash
+cd dashboard
+npm install
+npm run dev
+```
+
+The simulator is built in, so no device or credentials are required.
 
 Run the Python API from the repository root:
 
@@ -29,7 +37,7 @@ pip install -r requirements.txt
 uvicorn service.app:app --reload
 ```
 
-The API exposes `GET /health`, `GET /api/v1/devices`, `GET /api/v1/telemetry/{device_id}`, `GET /api/v1/tests`, and `POST /api/v1/diagnostics/run`. The dashboard can be pointed at it by setting `window.DIAGNOSTICS_API_URL` before `app.js` loads. The hosted static demo uses its built-in simulator.
+The API exposes `GET /health`, `GET /api/v1/devices`, `GET /api/v1/telemetry/{device_id}`, `GET /api/v1/tests`, and `POST /api/v1/diagnostics/run`. Set `VITE_DIAGNOSTICS_API_URL` in the dashboard build environment to connect the dashboard to the API. The hosted demo uses its built-in simulator when this variable is unset.
 
 ## Safety and integration boundaries
 
@@ -41,7 +49,7 @@ The API exposes `GET /health`, `GET /api/v1/devices`, `GET /api/v1/telemetry/{de
 
 ## Deployment
 
-`dashboard/` is a static site suitable for GitHub Pages or another static host. The API is a separate Python service and needs a Python-capable host. Configure CORS for the dashboard origin and set `window.DIAGNOSTICS_API_URL` to the API origin when connecting the two.
+`dashboard/` builds to a static site suitable for GitHub Pages or Vercel. GitHub Pages deployment is configured in `.github/workflows/pages.yml`. The API is a separate Python service and needs a Python-capable host. Restrict CORS to the dashboard origin and set `VITE_DIAGNOSTICS_API_URL` when connecting the two.
 
 ## License
 

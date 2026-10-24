@@ -1,0 +1,1 @@
+.dialog-backdrop{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:#030609bb;backdrop-filter:blur(3px)}.result-dialog{position:relative;max-height:calc(100vh - 32px);overflow:auto}.primary-button:disabled{opacity:.75;cursor:wait}
